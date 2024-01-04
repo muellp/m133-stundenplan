@@ -20,4 +20,21 @@ function getProfessions() {
 
 }
 
+function getClasses() {
+    $.ajax({
+        url: apiClass,
+        method: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            data.forEach(schoolClass => {
+                $('#classes').append('<option value="' + schoolClass.klasse_id + '">' + schoolClass.klasse_name + ', ' + schoolClass.klasse_longname + '</option>');
+            });
+        },
+        error: function (xhr, status, error) {
+            alert('Error:', status, error);
+        }
+    });
+}
+
 getProfessions();
+getClasses();
