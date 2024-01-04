@@ -50,7 +50,15 @@ function getTable(schoolClass, week = getCurrentWeekNumber()) {
         data: params,
         success: function (data) {
             data.forEach(table => {
-                $('#table').append('<p>' + table.tafel_id + '</p>');
+                $('#table').append('<tr>' +
+                    '<th>' + table.tafel_datum + '</th>' +
+                    '<th>' + table.tafel_wochentag + '</th>' +
+                    '<th>' + table.tafel_von + '</th>' +
+                    '<th>' + table.tafel_bis + '</th>' +
+                    '<th>' + table.tafel_lehrer + '</th>' +
+                    '<th>' + table.tafel_longfach + '</th>' +
+                    '<th>' + table.tafel_raum + '</th>' +
+                    '</tr>');
             });
         },
         error: function (xhr, status, error) {
@@ -70,4 +78,4 @@ function getCurrentWeekNumber() {
 
 getProfessions();
 getClasses();
-getTable(3494252);
+getTable(3494252, "3-2024");
