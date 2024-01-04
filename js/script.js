@@ -25,12 +25,19 @@ function getProfessions() {
 
 // get schoolClasses with profession parameter and fill "classes" dropdown
 // if no profession parameter is present, get all schoolClasses
-function getClasses() {
+function getClasses(profession) {
+    var params = {
+        beruf_id: profession
+    }
     $.ajax({
         url: apiClass,
         method: 'GET',
         dataType: 'json',
+        data: params,
         success: function (data) {
+            if (profession) {
+                $('#classes').empty()
+            }
             data.forEach(schoolClass => {
                 $('#classes').append('<option value="' + schoolClass.klasse_id + '">' + schoolClass.klasse_name + ', ' + schoolClass.klasse_longname + '</option>');
             });
@@ -78,6 +85,10 @@ function getCurrentWeekNumber() {
 
     return (currentWeek + '-' + now.getFullYear());
 }
+
+$('#professions').on('change', function () {
+    getClasses(this.value);
+});
 
 getProfessions();
 getClasses();
