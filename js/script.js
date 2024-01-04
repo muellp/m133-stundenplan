@@ -18,7 +18,6 @@ function getProfessions() {
             alert('Error:', status, error);
         }
     });
-
 }
 
 // get schoolClasses with profession parameter and fill "classes" dropdown
@@ -39,5 +38,36 @@ function getClasses() {
     });
 }
 
+function getTable(schoolClass, week = getCurrentWeekNumber()) {
+    var params = {
+        klasse_id: schoolClass,
+        woche: week
+    }
+    $.ajax({
+        url: apiTable,
+        method: 'GET',
+        dataType: 'json',
+        data: params,
+        success: function (data) {
+            data.forEach(table => {
+                $('#table').append('<p>' + table.tafel_id + '</p>');
+            });
+        },
+        error: function (xhr, status, error) {
+            alert('Error:', status, error);
+        }
+    });
+}
+
+function getCurrentWeekNumber() {
+    const now = new Date();
+    const startOfYear = new Date(now.getFullYear(), 0, 0);
+    const daysSinceStart = (now - startOfYear) / (24 * 60 * 60 * 1000);
+    const currentWeek = Math.ceil((daysSinceStart + startOfYear.getDay() + 1) / 7);
+
+    return (currentWeek + '-' + now.getFullYear());
+}
+
 getProfessions();
 getClasses();
+getTable(3494252);
