@@ -48,6 +48,8 @@ function getClasses(profession) {
     });
 }
 
+// get table for schoolClass with week and fill table
+// if no week is present, take current week
 function getTable(schoolClass, week = getCurrentWeekNumber()) {
     var params = {
         klasse_id: schoolClass,
@@ -77,6 +79,7 @@ function getTable(schoolClass, week = getCurrentWeekNumber()) {
     });
 }
 
+// function for getting current week number in following format WW-YYYY
 function getCurrentWeekNumber() {
     const now = new Date();
     const startOfYear = new Date(now.getFullYear(), 0, 0);
@@ -86,8 +89,14 @@ function getCurrentWeekNumber() {
     return (currentWeek + '-' + now.getFullYear());
 }
 
+// call function getClasses with profession from change event of dropdown professions
 $('#professions').on('change', function () {
     getClasses(this.value);
+});
+
+// call function getClasses with profession from change event of dropdown professions
+$('#classes').on('change', function () {
+    getTable(this.value);
 });
 
 getProfessions();
