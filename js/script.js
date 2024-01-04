@@ -19,6 +19,10 @@ function getProfessions() {
             data.forEach(profession => {
                 $('#professions').append('<option value="' + profession.beruf_id + '">' + profession.beruf_name + '</option>');
             });
+            let savedProfession = localStorage.getItem('profession');
+            if (savedProfession) {
+                $('#professions').val(savedProfession);
+            }
         },
         error: function (xhr, status, error) {
             alert('Error:', status, error);
@@ -39,11 +43,16 @@ function getClasses(profession) {
         data: params,
         success: function (data) {
             if (profession) {
+                localStorage.setItem('profession', profession);
                 $('#classes').empty();
             }
             data.forEach(schoolClass => {
                 $('#classes').append('<option value="' + schoolClass.klasse_id + '">' + schoolClass.klasse_name + ', ' + schoolClass.klasse_longname + '</option>');
             });
+            let savedSchoolClass = localStorage.getItem('schoolClass');
+            if (savedSchoolClass) {
+                $('#classes').val(savedSchoolClass);
+            }
         },
         error: function (xhr, status, error) {
             alert('Error:', status, error);
@@ -67,6 +76,7 @@ function getTable(schoolClass, week = getCurrentWeekNumber()) {
         dataType: 'json',
         data: params,
         success: function (data) {
+            localStorage.setItem('schoolClass', schoolClass);
             $('#table').empty();
             data.forEach(table => {
                 $('#table').append('<tr>' +
@@ -124,6 +134,6 @@ $('#nextWeek').on('click', function () {
 // set current week in paginator
 $('#currentWeek').empty().append(getCurrentWeekNumber);
 
-// call functions to prefill dropdowns
+// call functions to prefill 
 getProfessions();
 getClasses();
