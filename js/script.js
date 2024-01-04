@@ -3,6 +3,9 @@ const apiProfession = "http://sandbox.gibm.ch/berufe.php"
 const apiClass = "http://sandbox.gibm.ch/klassen.php"
 const apiTable = "http://sandbox.gibm.ch/tafel.php"
 
+// weekdays
+const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+
 // get all Professions and fill "professions" dropdown
 function getProfessions() {
     $.ajax({
@@ -52,7 +55,7 @@ function getTable(schoolClass, week = getCurrentWeekNumber()) {
             data.forEach(table => {
                 $('#table').append('<tr>' +
                     '<th>' + table.tafel_datum + '</th>' +
-                    '<th>' + table.tafel_wochentag + '</th>' +
+                    '<th>' + weekday[table.tafel_wochentag] + '</th>' +
                     '<th>' + table.tafel_von + '</th>' +
                     '<th>' + table.tafel_bis + '</th>' +
                     '<th>' + table.tafel_lehrer + '</th>' +
