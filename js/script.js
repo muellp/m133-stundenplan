@@ -54,13 +54,13 @@ function getTable(schoolClass, week = getCurrentWeekNumber()) {
         success: function (data) {
             data.forEach(table => {
                 $('#table').append('<tr>' +
-                    '<th>' + table.tafel_datum + '</th>' +
-                    '<th>' + weekday[table.tafel_wochentag] + '</th>' +
-                    '<th>' + table.tafel_von + '</th>' +
-                    '<th>' + table.tafel_bis + '</th>' +
-                    '<th>' + table.tafel_lehrer + '</th>' +
-                    '<th>' + table.tafel_longfach + '</th>' +
-                    '<th>' + table.tafel_raum + '</th>' +
+                    '<td>' + table.tafel_datum + '</td>' +
+                    '<td>' + weekday[table.tafel_wochentag] + '</td>' +
+                    '<td>' + table.tafel_von + '</td>' +
+                    '<td>' + table.tafel_bis + '</td>' +
+                    '<td>' + table.tafel_lehrer + '</td>' +
+                    '<td>' + table.tafel_longfach + '</td>' +
+                    '<td>' + table.tafel_raum + '</td>' +
                     '</tr>');
             });
         },
