@@ -99,8 +99,9 @@ $('#classes').on('change', function () {
     getTable(this.value);
 });
 
-getProfessions();
-getClasses();
-
 // set current week in paginator
 $('#currentWeek').empty().append(getCurrentWeekNumber);
+
+// call functions to prefill dropdowns
+getProfessions();
+getClasses();
