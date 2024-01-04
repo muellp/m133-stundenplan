@@ -1,13 +1,13 @@
 // apis
-const apiProfession = "http://sandbox.gibm.ch/berufe.php"
-const apiClass = "http://sandbox.gibm.ch/klassen.php"
-const apiTable = "http://sandbox.gibm.ch/tafel.php"
+const apiProfession = "http://sandbox.gibm.ch/berufe.php";
+const apiClass = "http://sandbox.gibm.ch/klassen.php";
+const apiTable = "http://sandbox.gibm.ch/tafel.php";
 
 // weekdays
-const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 // current week counter for calculation
-let weekCounter = 0
+let weekCounter = 0;
 
 // get all Professions and fill "professions" dropdown
 function getProfessions() {
