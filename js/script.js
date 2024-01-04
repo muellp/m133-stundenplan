@@ -9,8 +9,8 @@ function getProfessions() {
         method: 'GET',
         dataType: 'json',
         success: function (data) {
-            data.forEach(element => {
-                console.log(element)
+            data.forEach(profession => {
+                $('#professions').append('<option value="' + profession.beruf_id + '">' + profession.beruf_name + '</option>');
             });
         },
         error: function (xhr, status, error) {
