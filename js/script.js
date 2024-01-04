@@ -93,5 +93,5 @@ $('#professions').on('change', function () {
 getProfessions();
 getClasses();
 
-// set current week
+// set current week in paginator
 $('#currentWeek').empty().append(getCurrentWeekNumber);
