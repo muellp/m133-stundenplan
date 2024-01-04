@@ -54,6 +54,9 @@ function getClasses(profession) {
 // get table for schoolClass with week and fill table
 // if no week is present, take current week
 function getTable(schoolClass, week = getCurrentWeekNumber()) {
+    if (!schoolClass) {
+        return
+    }
     var params = {
         klasse_id: schoolClass,
         woche: week
@@ -96,6 +99,7 @@ function getCurrentWeekNumber() {
 // call function getClasses with profession from change event of dropdown professions
 $('#professions').on('change', function () {
     getClasses(this.value);
+    getTable($('#classes').val(), $('#currentWeek').text());
 });
 
 // call function getClasses with profession from change event of dropdown professions
