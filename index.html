@@ -4,21 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page Title -->
     <title>Stundenplan</title>
+    <!-- link stylesheet -->
     <link rel="stylesheet" href="css/styles.css">
+    <!-- load jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 
 <body>
+    <!-- dropdown for professions -->
     <select id="professions">
         <option value="" selected>Bitte wählen ...</option>
+        <!-- more options will be added by js -->
     </select>
 
+    <!-- dropdown for schoolClasses -->
     <select id="classes">
         <option value="" selected>Bitte wählen ...</option>
+        <!-- more options will be added by js -->
     </select>
 
-    <table id="table" class="table">
+    <!-- table for selected schoolClass -->
+    <table class="table">
         <thead>
             <tr>
                 <th scope="col">Date</th>
@@ -30,8 +38,12 @@
                 <th scope="col">Room</th>
             </tr>
         </thead>
+        <tbody id="table">
+            <!-- table body will be added by js -->
+        </tbody>
     </table>
 
+    <!-- load js after content is loaded -->
     <script src="js/script.js" defer></script>
 </body>
 
