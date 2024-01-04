@@ -3,6 +3,7 @@ const apiProfession = "http://sandbox.gibm.ch/berufe.php"
 const apiClass = "http://sandbox.gibm.ch/klassen.php"
 const apiTable = "http://sandbox.gibm.ch/tafel.php"
 
+// get all Professions and fill "professions" dropdown
 function getProfessions() {
     $.ajax({
         url: apiProfession,
@@ -20,6 +21,8 @@ function getProfessions() {
 
 }
 
+// get schoolClasses with profession parameter and fill "classes" dropdown
+// if no profession parameter is present, get all schoolClasses
 function getClasses() {
     $.ajax({
         url: apiClass,
