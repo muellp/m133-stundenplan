@@ -132,7 +132,7 @@ $('#nextWeek').on('click', function () {
 });
 
 // set current week in paginator
-$('#currentWeek').empty().append(getCurrentWeekNumber);
+$('#currentWeek').empty().append(getCurrentWeekNumber());
 
 // call functions to prefill 
 getProfessions();
