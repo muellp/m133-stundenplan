@@ -92,4 +92,6 @@ $('#professions').on('change', function () {
 
 getProfessions();
 getClasses();
-getTable(3494252, "3-2024");
+
+// set current week
+$('#currentWeek').empty().append(getCurrentWeekNumber);
