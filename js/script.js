@@ -6,6 +6,9 @@ const apiTable = "http://sandbox.gibm.ch/tafel.php"
 // weekdays
 const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
+// current week counter for calculation
+let weekCounter = 0
+
 // get all Professions and fill "professions" dropdown
 function getProfessions() {
     $.ajax({
@@ -36,7 +39,7 @@ function getClasses(profession) {
         data: params,
         success: function (data) {
             if (profession) {
-                $('#classes').empty()
+                $('#classes').empty();
             }
             data.forEach(schoolClass => {
                 $('#classes').append('<option value="' + schoolClass.klasse_id + '">' + schoolClass.klasse_name + ', ' + schoolClass.klasse_longname + '</option>');
@@ -61,6 +64,7 @@ function getTable(schoolClass, week = getCurrentWeekNumber()) {
         dataType: 'json',
         data: params,
         success: function (data) {
+            $('#table').empty();
             data.forEach(table => {
                 $('#table').append('<tr>' +
                     '<td>' + table.tafel_datum + '</td>' +
@@ -86,7 +90,7 @@ function getCurrentWeekNumber() {
     const daysSinceStart = (now - startOfYear) / (24 * 60 * 60 * 1000);
     const currentWeek = Math.ceil((daysSinceStart + startOfYear.getDay() + 1) / 7);
 
-    return (currentWeek + '-' + now.getFullYear());
+    return ((currentWeek + weekCounter) + '-' + now.getFullYear());
 }
 
 // call function getClasses with profession from change event of dropdown professions
@@ -96,7 +100,21 @@ $('#professions').on('change', function () {
 
 // call function getClasses with profession from change event of dropdown professions
 $('#classes').on('change', function () {
-    getTable(this.value);
+    getTable(this.value, $('#currentWeek').text());
+});
+
+// get previous week
+$('#prevWeek').on('click', function () {
+    weekCounter -= 1;
+    $('#currentWeek').empty().append(getCurrentWeekNumber());
+    getTable($('#classes').val(), $('#currentWeek').text());
+});
+
+// get next week
+$('#nextWeek').on('click', function () {
+    weekCounter += 1;
+    $('#currentWeek').empty().append(getCurrentWeekNumber());
+    getTable($('#classes').val(), $('#currentWeek').text());
 });
 
 // set current week in paginator
