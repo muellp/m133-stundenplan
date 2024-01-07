@@ -11,6 +11,8 @@ let weekCounter = 0;
 
 // get all Professions and fill "professions" dropdown
 function getProfessions() {
+    // notify user request is loading
+    $('.professions h2').after('<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>');
     $.ajax({
         url: apiProfession,
         method: 'GET',
@@ -28,11 +30,14 @@ function getProfessions() {
             alert('Error:', status, error);
         }
     });
+    $('.professions .spinner-border').remove();
 }
 
 // get schoolClasses with profession parameter and fill "classes" dropdown
 // if no profession parameter is present, get all schoolClasses
 function getClasses(profession) {
+    // notify user request is loading
+    $('.classes h2').after('<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>');
     var params = {
         beruf_id: profession
     }
@@ -58,6 +63,7 @@ function getClasses(profession) {
             alert('Error:', status, error);
         }
     });
+    $('.classes .spinner-border').remove();
 }
 
 // get table for schoolClass with week and fill table
@@ -66,6 +72,8 @@ function getTable(schoolClass, week = getCurrentWeekNumber()) {
     if (!schoolClass) {
         return
     }
+    // notify user request is loading
+    $('.table h2').after('<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>');
     var params = {
         klasse_id: schoolClass,
         woche: week
@@ -94,6 +102,7 @@ function getTable(schoolClass, week = getCurrentWeekNumber()) {
             alert('Error:', status, error);
         }
     });
+    $('.table .spinner-border').remove();
 }
 
 // function for getting current week number in following format WW-YYYY
