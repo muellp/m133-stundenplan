@@ -1,0 +1,7 @@
+/* enable horizontal scroll for mobile if table is to large */
+@media only screen and (max-width: 480px) {
+    .table {
+        overflow-x: auto;
+        display: block;
+    }
+}
